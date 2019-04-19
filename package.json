@@ -1,13 +1,13 @@
 {
-  "name": "node-scrapy",
+  "name": "lb-scrapy",
   "version": "1.0.0",
   "description": "lightweight scrapy with node.js",
-  "main": "src/index.ts",
+  "main": "dist/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "cd src && tsc"
   },
-  "author": "",
+  "author": "ilovepeppa",
   "license": "ISC",
   "dependencies": {
     "@types/async": "^2.4.1",
