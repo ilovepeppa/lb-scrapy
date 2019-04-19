@@ -75,12 +75,8 @@ class QuoteSpider extends Spider {
     parse(response) {
         let page = response.url.match(/\d+/)[0];
         let filename = `quotes-${page}.html`;
-        fs.writeFile(filename, response.text, function (err) {
-            if (err) {
-                console.log(err);
-            }
-        })
-        console.log(`Saved file ${filename}`)
+        fs.writeFileSync(filename, response.text);
+        console.log(`Saved file ${filename}`);
     }
 }
 
