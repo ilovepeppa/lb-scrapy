@@ -1,0 +1,27 @@
+{
+    "compilerOptions": {
+        "module": "commonjs",
+        "target": "es2015",
+        "outDir": "./dist",
+        "noImplicitAny": true,
+        "strictNullChecks": true,
+        "strict": true,
+        "alwaysStrict": true,
+        "sourceMap": false,
+        "noImplicitReturns": true,
+        "noImplicitThis": true,
+        "pretty": true,
+        // "listFiles": true,
+        // "listEmittedFiles": true,
+        "typeRoots": [
+            "./node_modules/@types"
+        ],
+    },
+    "include": [
+        "src/**/*"
+    ],
+    "exclude": [
+        "node_modules",
+        "**/*/spec.ts"
+    ]
+}

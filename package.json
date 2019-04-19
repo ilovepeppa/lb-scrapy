@@ -1,0 +1,32 @@
+{
+  "name": "node-scrapy",
+  "version": "1.0.0",
+  "description": "lightweight scrapy with node.js",
+  "main": "src/index.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "cd src && tsc"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@types/async": "^2.4.1",
+    "@types/bloomfilter": "0.0.0",
+    "@types/cheerio": "^0.22.11",
+    "@types/node": "^11.13.4",
+    "@types/request": "^2.48.1",
+    "@types/request-promise": "^4.1.42",
+    "@types/yargs": "^13.0.0",
+    "async": "^2.6.2",
+    "axios": "^0.18.0",
+    "bloomfilter": "0.0.18",
+    "cheerio": "^1.0.0-rc.3",
+    "request": "^2.88.0",
+    "request-promise": "^4.2.4",
+    "winston": "^3.2.1",
+    "yargs": "^13.2.2"
+  },
+  "devDependencies": {
+    "typescript": "^3.4.3"
+  }
+}
