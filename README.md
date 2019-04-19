@@ -169,6 +169,47 @@ class FileItemPipeline extends ItemPipeline {
 }
 ```
 
+### Activating an Item Pipeline compponent
+
+To active an Item Pipeline component you must add its class to the `ITEM_PIPELINES` setting, like in the following example:
+
+```js
+const {
+    Request,
+    Spider,
+    ItemPipeline
+} = require("lb-scrapy");
+
+class FileItemPipeline extends ItemPipeline {
+    constructor() {
+        super(...arguments);
+        fs.writeFileSync('result.txt', '');
+    }
+
+    process_item(item, response, spider) {
+        fs.appendFileSync('result.txt', JSON.stringify(item) + '\r\n');
+        return item;
+    }
+}
+
+class QuoteSpider extends Spider {
+    constructor() {
+        super(...arguments);
+        this.settings = {
+            'ITEM_PIPELINES': [{
+                class: FileItemPipeline,
+                priority: 200
+            }]
+        };
+    }
+
+    ... more code
+}
+
+let spider = new QuoteSpider();
+spider.start();
+```
+
 ## License
 
 MIT
