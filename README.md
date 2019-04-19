@@ -53,7 +53,6 @@ spider.start();
 
 ## A shortcut to the start_requests method
 
-
 Instead of implementing a `start_requests` method that generate `Request` objects from URLs, you can just define a `start_urls` class attribute with a list of URLs. This list will then be used by the default implementation of `start_requests()` to create the initial requests for your spider. 
 
 ```js
@@ -88,6 +87,56 @@ class QuoteSpider extends Spider {
 let spider = new QuoteSpider();
 spider.start();
 ```
+
+## Extracting data in our spider
+
+A scrapy spider typically generates many dictionaries containing the data extracted from the page. To do that, we use the `yield` keyword in the callback, as you see below:
+
+```js
+const {
+    Request,
+    Spider
+} = require("lb-scrapy");
+
+class QuoteSpider extends Spider {
+    constructor() {
+        super(...arguments);
+        this.start_urls = [
+            'http://quotes.toscrape.com/page/1/',
+            'http://quotes.toscrape.com/page/2/',
+        ]
+    }
+
+    * parse(response) {
+        let $ = response.selector;
+        let items = $('div.quote').map((i, el) => {
+            return {
+                'text': $(el).find('.text').text(),
+                'author': $(el).find('.author').text(),
+                'tags': $(el).find('.tags .tag').map((i, el) => $(el).text()).get()
+            };
+        }).get();
+
+        for (let item of items) {
+            yield item;
+        }
+    }
+}
+
+let spider = new QuoteSpider();
+spider.start();
+```
+
+If you run this spider, it will output the extracted data with the log:
+
+```bash
+2019-04-05 19:39:30 [INFO]: Scrapyed from <200 http://quotes.toscrape.com/page/1/>
+{"text":"“The world as we have created it is a process of our thinking. It cannot be changed without changing our thinking.”","author":"Albert Einstein","tags":["change","deep-thoughts","thinking","world"]}
+2019-04-05 19:39:30 [INFO]: Scrapyed from <200 http://quotes.toscrape.com/page/1/>
+{"text":"“It is our choices, Harry, that show what we truly are, far more than our abilities.”","author":"J.K. Rowling","tags":["abilities","choices"]}
+```
+
+We use [cheerio](https://github.com/ilovepeppa/lb-scrapy) to parse HTML in response, you can use it with `response.selector`.
 
 # Item Pipeline
 
@@ -127,3 +176,7 @@ class FileItemPipeline extends ItemPipeline {
     }
 }
 ```
+
+## License
+
+MIT

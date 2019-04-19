@@ -105,7 +105,7 @@ export default class Engine {
             } else if (item.constructor == Object) {
                 this.process_item(item, response);
             } else {
-                logger.warning('Spider must return Request, dict or null')
+                logger.warn('Spider must return Request, dict or null')
             }
         }
     }
