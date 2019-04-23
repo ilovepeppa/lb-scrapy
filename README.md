@@ -128,7 +128,7 @@ If you run this spider, it will output the extracted data with the log:
 {"text":"“It is our choices, Harry, that show what we truly are, far more than our abilities.”","author":"J.K. Rowling","tags":["abilities","choices"]}
 ```
 
-We use [cheerio](https://github.com/ilovepeppa/lb-scrapy) to parse HTML in response, you can use it with `response.selector`.
+We use [cheerio](https://github.com/cheeriojs/cheerio) to parse HTML in response, you can use it with `response.selector`.
 
 # Item Pipeline
 
