@@ -84,7 +84,7 @@ export default class Engine {
             return;
         }
 
-        logger.info(`Crawled (${(response as Response).status_code}) <${request.method} ${(response as Response).url}>`)
+        logger.info(`Crawled (${(response as Response).status}) <${request.method} ${(response as Response).url}>`)
         let callback = request.callback || this.spider.parse;
         let result = (callback.bind(this.spider))(response);
         if (result && typeof result[Symbol.iterator] === 'function') {

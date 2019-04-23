@@ -14,7 +14,7 @@ export default class RedirectDownloadMiddleware extends DownloadMiddleware {
         if (!Settings.getInstance().get('ENABLE_REDIRECT') || response === null) {
             return response;
         }
-        if (Settings.getInstance().get('REDIRECT_STATUS_CODE').indexOf(response.status_code) > -1) {
+        if (Settings.getInstance().get('REDIRECT_STATUS_CODE').indexOf(response.status) > -1) {
             return this.redirect(request, response);
         }
 
@@ -24,7 +24,7 @@ export default class RedirectDownloadMiddleware extends DownloadMiddleware {
     private redirect(request: Request, response: Response): Request {
         let ori_url = request.url;
         request.url = urlResolve(request.url, response.headers['location']);
-        logger.info(`Redirecting (${response.status_code}) to <${request.method} ${request.url}> from <${request.method} ${ori_url}>`);
+        logger.info(`Redirecting (${response.status}) to <${request.method} ${request.url}> from <${request.method} ${ori_url}>`);
         return request;
     }
 

@@ -4,9 +4,12 @@ import { resolve as urlResolve } from 'url';
 export default class Response {
     selector: any;
 
-    constructor(public text: string, public status_code: number = 200,
-        public url: string = '', public headers: { [key: string]: any } = {},
-        public cookies: { [key: string]: any } = {}, public meta: { [key: string]: any } = {}) {
+    constructor(public text: string,
+        public status: number = 200,
+        public url: string = '',
+        public headers: { [key: string]: any } = {},
+        public cookies: { [key: string]: any } = {},
+        public meta: { [key: string]: any } = {}) {
         this.selector = cheerio.load(text);
     }
 
@@ -26,10 +29,6 @@ export default class Response {
 
         return new Response(response.body, +response.statusCode, response.request.uri.href,
             response.headers, cookies_dict);
-    }
-
-    select(rule: string) {
-        return this.selector(rule);
     }
 
     urljoin(url: string) {

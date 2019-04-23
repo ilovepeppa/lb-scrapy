@@ -3,7 +3,6 @@ import Request from './request';
 import Engine from './engine';
 
 export default class Spider {
-    name: string = '';
     settings: { [key: string]: any } = {};
     start_urls: string[] = [];
 

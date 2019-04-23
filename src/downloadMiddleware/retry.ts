@@ -17,8 +17,8 @@ export default class RetryDownloadMiddleware extends DownloadMiddleware {
         if (!response) {
             return response;
         }
-        if (this.retry_status_codes.indexOf(response.status_code) > -1) {
-            let reason = `status code ${response.status_code}`;
+        if (this.retry_status_codes.indexOf(response.status) > -1) {
+            let reason = `status code ${response.status}`;
             return this.retry(request, response, reason);
         }
         return response;
