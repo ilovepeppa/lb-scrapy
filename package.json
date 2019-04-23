@@ -1,6 +1,6 @@
 {
   "name": "lb-scrapy",
-  "version": "1.0.1",
+  "version": "1.0.3",
   "description": "lightweight scrapy with node.js",
   "main": "dist/index.js",
   "scripts": {
